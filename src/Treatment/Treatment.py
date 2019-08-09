@@ -9,7 +9,7 @@ class Treatment(object):
 
     def get_data(self, contacts):
         
-        if '-' not in contacts:
+        if ',' not in contacts:
             return [contacts]
         else:
             return [contact for contact in contacts.split('-')]

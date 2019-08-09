@@ -9,8 +9,8 @@ class ExceptionSystemNotification(Exception):
     Exception class for application
     """
 
-    def __init__(self):
-        Exception.__init__(self)
+    def __init__(self, message):
+        Exception.__init__(self, message)
 
     def logger_message(self):
         log = Logger()

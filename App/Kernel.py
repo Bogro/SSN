@@ -5,6 +5,7 @@ import sys
 from App.Parser import Parser
 from Library.ExceptionSystemNotification import ExceptionSystemNotification
 from src.App import App
+from Library.Function import function as Fun
 
 
 def main():
@@ -16,7 +17,8 @@ def main():
 class Kernel(object):
 
     def __init__(self, argv):
-        self.parser = Parser(argv[1:])
+        self.parser = Parser(Fun.is_not_empty(argv[1:]))
+
 
     def exec(self):
         self.parser.treatment_parser()

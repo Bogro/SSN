@@ -3,6 +3,13 @@ from .controller import controller
 
 
 class controller_send_email(controller):
-    pass
+    
+    def __init__(self):
+        controller.__init__(self)
+
+    def action_send_message(self, message, contacts):
+        email = contacts['OK'][:]
+
+        print(message, email)
 
     

@@ -21,10 +21,11 @@ class Parser(object):
 
     def treatment_parser(self):
         
+        
         try:
 
-            if len(self.argv) > 3:
-                raise ExceptionSystemNotification('ERROR: ')
+            if self.argv is None or len(self.argv) > 3:
+                raise ExceptionSystemNotification('ERROR: parameter is not valid')
 
             treatement = self.argv[0]
             contact = self.argv[1]

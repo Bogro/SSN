@@ -9,12 +9,13 @@ class Logger(object):
     def __init__(self):
         self.message = ""
         self.file = 0
+        self.now = time.strftime('%Y-%m-%d')
         try:
             if os.access('var', os.F_OK):
-                self.__creat_log_folder__()
+                self.creat_log_folder()
             else:
                 os.mkdir('var')
-                self.__creat_log_folder__()
+                self.creat_log_folder()
         except:
             print('Error execution')
 
@@ -24,8 +25,8 @@ class Logger(object):
         :param message:
         """
         self.message = message
-        now = time.strftime('%Y-%m-%d')
-        file = f'var/logs/logger-{now}.log'
+        
+        file = f'var/logs/logger-{self.now}.log'
         self.__open_file__(file)
         self.__write_message__()
 
@@ -35,9 +36,8 @@ class Logger(object):
         :param message:
         """
         self.message = message
-        if self.__creat_log_folder__('info'):
-            now = time.strftime('%Y-%m-%d')
-            file = f'var/logs/info/{now}.log'
+        if self.creat_log_folder('info'):
+            file = f'var/logs/info/{self.now}.log'
             self.__open_file__(file)
             self.__write_message__()
         else:
@@ -49,9 +49,8 @@ class Logger(object):
         :param message:
         """
         self.message = message
-        if self.__creat_log_folder__('success'):
-            now = time.strftime('%Y-%m-%d')
-            file = f'var/logs/success/{now}.log'
+        if self.creat_log_folder('success'):
+            file = f'var/logs/success/{self.now}.log'
             self.__open_file__(file)
             self.__write_message__()
         else:
@@ -63,9 +62,8 @@ class Logger(object):
         :param message:
         """
         self.message = message
-        if self.__creat_log_folder__('warning'):
-            now = time.strftime('%Y-%m-%d')
-            file = f'var/logs/warning/{now}.log'
+        if self.creat_log_folder('warning'):
+            file = f'var/logs/warning/{self.now}.log'
             self.__open_file__(file)
             self.__write_message__()
         else:
@@ -78,9 +76,8 @@ class Logger(object):
         """
         self.message = message
 
-        if self.__creat_log_folder__('danger'):
-            now = time.strftime('%Y-%m-%d')
-            file = f'var/logs/danger/{now}.log'
+        if self.creat_log_folder('danger'):
+            file = f'var/logs/danger/{self.now}.log'
             self.__open_file__(file)
             self.__write_message__()
         else:
@@ -107,7 +104,7 @@ class Logger(object):
         finally:
             self.file.close()
 
-    def __creat_log_folder__(self, type=''):
+    def creat_log_folder(self, type=''):
         """
         Treatment for the created folder of a logger
         :param type:
